@@ -1,4 +1,4 @@
 use employeetracker_db;
 insert into department(name)values("HR"),("Accounting"),("Legal");
-insert into role(title,salary,department_id)values("Manager",100,1),("Manager",100,2),("Manager",100,3),("Payroll Specialist",100,1),("Accountant",100,2),("Paralegal",100,3);
-insert into employee(first_name,last_name,role_id,manager_id)values("Ryan","McCulloch",1,null),("Joe","Smith",2,null),("Ricky","Bobby",3,null),("Robert","Bob",4,1),("Lisa","Cat",5,2),("Ronald","Mc",6,3);
+insert into role(title,salary,department_id)values("Manager",60000,1),("Receptionist",50000,2),("Lawyer",90000,3),("Payroll Specialist",60000,2),("Accountant",100000,2),("Paralegal",65000,3);
+insert into employee(first_name,last_name,role_title,manager_id)values("Ryan","McCulloch","Manager",null),("Joe","Smith","Accountant",null),("Ricky","Bobby","Paralegal",null),("Robert","Bob","Payroll Specialist",null),("Lisa","Cat","Receptionist",null),("Ronald","Mc","Accountant",null);

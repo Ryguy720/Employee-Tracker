@@ -1,12 +1,13 @@
 const inquirer = require("inquirer");
-const Choices = require("inquirer/lib/objects/choices");
+require("console.table")
 const mysql = require("mysql2");
-const { exit } = require("process");
+const { type } = require("os");
+
 var connection = mysql.createConnection({
     host:"localhost",
     "user":"root",
     "password":"Root",
-    "database": "employeetracker-db",
+    "database": "employeetracker_db",
 
 })
 connection.connect(error => {
@@ -28,23 +29,95 @@ inquirer.prompt([
          addEmployee();
          break
          case "Add Department": 
-         addEmployee();
+         addDepartment();
          break
          case "Add Role": 
          addEmployee();
          break
          case "View Department": 
-         addEmployee();
+         viewDepartment();
          break
          case "View Employee": 
-         addEmployee();
+         viewEmployee();
          break
          case "View Role": 
-         addEmployee();
+         viewRole();
          break
          case "Exit App": 
-         addEmployee();
+         exitApp();
          break
      }
 } )
+}
+function viewEmployee(){
+    connection.query("select * From Employee;",(err,data) => {
+        if(err) throw err;
+        console.table(data)
+        choices();
+    })
+}
+
+function viewDepartment(){
+    connection.query("select * From Department;",(err,data) => {
+        if(err) throw err;
+        console.table(data)
+        choices();
+    })
+}
+function viewRole(){
+    connection.query("select * From Role;",(err,data) => {
+        if(err) throw err;
+        console.table(data)
+        choices();
+    })
+    
+}
+function exitApp(){
+    connection.query("",(err,data) => {
+        if(err) throw err;
+        console.table(data)
+        choices();
+    })
+    
+}
+// function to add Employee
+function addEmployee(){
+    inquirer.prompt([{
+        name: "First name",
+        type: "input",
+        message: "Enter First Name",
+
+    },{
+        name: "Last Name",
+        type: "input",
+        message: "Enter Last Name",
+
+    },
+    {
+        name: "Role_id",
+        type: "input",
+        message: "Enter employee Role",
+
+    }])
+    connection.query("UPDATE * From Employee;",(err,data) => {
+        if(err) throw err;
+        console.table(data)
+        choices();
+    })
+}
+
+// function to add Department
+function addDepartment(){
+    inquirer.prompt([{
+        name: "Department name",
+        type: "input",
+        message: "Enter Department Name",
+
+    },
+])
+    connection.query("select * From department;",(err,data) => {
+        if(err) throw err;
+        console.table(data)
+        choices();
+    })
 }
